@@ -25,7 +25,7 @@ exit_p=zeros(length(k_span)) #vector of lenght k_span to collect all exit probab
 for q in q_span
     for p in p_span
         for k in k_span
-            exit=0 #number of symulation which get to N_up=64 
+            exit=0 #number of simulation which get to N_up=64 
             for rep_i in 1:repeat
                 N__up=k
                 
@@ -43,8 +43,8 @@ for q in q_span
             exit_p[k]=exit/repeat
         end
 
-    name="Plot_zone/Pratik/exit_prob/clean/exit_sym_N$(N)_p$(p)_q$(q).csv"
-    writedlm(name, hcat(k_span ./N, exit_p), ',')
+    name="exit_sim_N$(N)_p$(p)_q$(q).csv"
+    # writedlm(name, hcat(k_span ./N, exit_p), ',')
     plot!(k_span,exit_p,label="p = $p",linewidth=3)
     end
 end

@@ -1,6 +1,6 @@
 # Modeling biases in the generalized nonlinear q-voter model
  Codes used to generate results for publication "Modeling biases in binary decision-making within the generalized nonlinear q-voter model"
-
+ [Arxiv](https://arxiv.org/pdf/2502.10172)
  ## Parameters 
  - **N**  - Number of agents
  - **q**  - size of grupe of influencse 
@@ -18,19 +18,21 @@ Schematic diagram of our model illustrating possible scenarios in which a target
  ## Files
  ### Simulation
  The model was implemented on a complete graph, so in the case of simulation, it allowed us to forget the network structure and remember only the number of agents adapted (**N_up**) 
- #### one_step_function.jl
+ #### one_step_function.jl [View file](one_step_function.jl)
+ 
 Main function that describes the MoneCarlo elemetary step($\Delta t= 1/N $) in the simulation.
- #### trajectory_simulation.jl
+ #### trajectory_simulation.jl [View file](trajectory_simulation.jl)
+ 
  Time trajectories from symulation for given **q**,**epsilon_up_arrow**,**epsilon_down_arrow values**. The file has been modified for calculating multiple initial conditions  
- #### exitprobability_simulation.jl
+ #### exitprobability_simulation.jl [View file](exitprobability_simulation.jl)
  Code used to calculate exit probability from simulation.
 
  ### Analytical
- #### trajectory_analitical_plus_stab_point.jl
+ #### trajectory_analitical_plus_stab_point.jl [View file](trajectory_analitical_plus_stab_point.jl )
 Time trajectories from analytics for given **q**,**epsilon_up_arrow**,**epsilon_down_arrow values**.
 In these cases were added stable and unstable points that occur in the system for the given parameters.
 
- #### phase_portrait.jl
+ #### phase_portrait.jl [View file](phase_portrait.jl)
  Preparation of a phase portrait for a given q.
 In the code, we look for fixed points and check their stability. The code generates temporary phase numbers as well as the number of fixed points for a grid of **epsilon_up_arrow** and **epsilon_down_arrow values** values.
 
