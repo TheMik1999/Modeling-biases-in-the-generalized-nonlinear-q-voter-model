@@ -37,7 +37,7 @@ function one_step(N::Int,N_up::Int,epsilon_up_arow::Float64,epsilon_down_arow::F
         
         # we did not collect q-panel with same opinion
         r=rand()
-        if r<epsilon_up_arow
+        if r<epsilon_down_arow
             return -1
         else
             return 0       
@@ -79,7 +79,7 @@ function one_step(N::Int,N_up::Int,epsilon_up_arow::Float64,epsilon_down_arow::F
 
         # we did not collect q-panel with same opinion
         r=rand()
-        if r<epsilon_down_arow
+        if r<epsilon_up_arow 
             return 1
         else
             return 0

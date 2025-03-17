@@ -67,7 +67,7 @@ let
 
     
     #--------- model parameters 
-    q =5
+    q=5
     epsilon_up_arow=0.25
     epsilon_down_arow=0.19
 
