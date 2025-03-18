@@ -44,7 +44,7 @@ function create_transition_matrix(N, q, ε_⭡, ε_⭣)
 end
 
 
-function exit_probability_to_N_from_k(N, q, ε_⭡, ε_⭣, k_initial)
+function exit_probability_to_N_from_k(N, q, ε_⭡, ε_⭣)
     P,to_0,to_N = create_transition_matrix(N, q, ε_⭡, ε_⭣)
     Q = P[2:N, 2:N] 
     F = inv(I - Q)
@@ -52,7 +52,7 @@ function exit_probability_to_N_from_k(N, q, ε_⭡, ε_⭣, k_initial)
     R=zeros(N-1)
     R[end]=to_N
     exit_prob = F * R 
-    return  exit_prob[k_initial]
+    return  exit_prob
 end
 
 
@@ -70,14 +70,8 @@ exit_all=k_span .* 0.0
 plot1 = plot()
 for ε_⭡ in ε_⭡_span
     ε_⭣ = 1 - ε_⭡ 
-    for k_initial in  k_span
-        exit_prob = exit_probability_to_N_from_k(N, q, ε_⭡, ε_⭣, k_initial)
-        percent_exit_prob = exit_prob
-        println("c_0 = $(k_initial/N) wynosi $percent_exit_prob")
-        exit_all[k_initial]=percent_exit_prob
-    end 
-    plot1 = plot!(k_span,exit_all,label="$(ε_⭡)")
-    plot1 = plot!(64 .-k_span,1 .-exit_all,label="",color=:black)
+    exit_all=exit_probability_to_N_from_k(N, q, ε_⭡, ε_⭣)
+    plot1 = plot!(k_span./N,exit_all,label="$(ε_⭡)")
     # name="exit_N$(N)_p$(ε_⭡)_q$(q).csv"
     # writedlm(name, hcat(k_span ./N, exit_all), ',')
 end 
