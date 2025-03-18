@@ -59,7 +59,7 @@ end
 let 
 
 N = 64 
-q = 2
+q = 3
 
 k_span= 1: 1 : N-1 
 k_span= collect(k_span)
@@ -72,9 +72,9 @@ for ε_⭡ in ε_⭡_span
     ε_⭣ = 1 - ε_⭡ 
     exit_all=exit_probability_to_N_from_k(N, q, ε_⭡, ε_⭣)
     plot1 = plot!(k_span./N,exit_all,label="$(ε_⭡)")
-    # name="exit_N$(N)_p$(ε_⭡)_q$(q).csv"
-    # writedlm(name, hcat(k_span ./N, exit_all), ',')
 end 
+xlims!(0,1)
+ylims!(0,1)
 
 display(plot1)
 
