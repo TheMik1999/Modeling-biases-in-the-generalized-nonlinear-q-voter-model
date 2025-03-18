@@ -1,7 +1,5 @@
-
 using Plots
 using CSV
-using DelimitedFiles
 
 include("one_step_function.jl")
 let 
@@ -27,15 +25,15 @@ for q in q_span
         for k in k_span
             exit=0 #number of simulation which get to N_up=64 
             for rep_i in 1:repeat
-                N__up=k
+                N_up=k
                 
-                while N__up!=N && N__up!=0 
+                while N_up!=N && N_up!=0 
                     for i=1:N
-                        N__up=N__up+one_step(N__up,p,1-p,q,N)
+                        N_up=N_up+one_step(N_up,p,1-p,q,N)
                     end
                 end
 
-                if N__up==N
+                if N_up==N
                     exit=exit+1
                 end
 
@@ -44,7 +42,6 @@ for q in q_span
         end
 
     name="exit_sim_N$(N)_p$(p)_q$(q).csv"
-    # writedlm(name, hcat(k_span ./N, exit_p), ',')
     plot!(k_span,exit_p,label="p = $p",linewidth=3)
     end
 end

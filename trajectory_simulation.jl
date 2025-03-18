@@ -1,4 +1,3 @@
-
 using Plots
 include("one_step_function.jl")
 
@@ -6,8 +5,8 @@ let
 
 
 #--------- paraniteres of the model 
-epsilon_up_arow=0.25  
-epsilon_down_arow=0.19
+ε_⭡=0.25  
+ε_⭣=0.19
 q=5
 N=10000     
 #----------------------------------
@@ -32,7 +31,7 @@ for c_0 in c_0_span
     for t_i=1:mcs
 
         for i=1:N
-            N_up=N_up+one_step(N,N_up,epsilon_up_arow,epsilon_down_arow,q)
+            N_up=N_up+one_step(N,N_up,ε_⭡,ε_⭣,q)
         end
         c_in_time[t_i+1]=N_up/N
 

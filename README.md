@@ -1,46 +1,116 @@
-# Modeling biases in the generalized nonlinear q-voter model
- Codes used to generate results for publication "Modeling biases in binary decision-making within the generalized nonlinear q-voter model"
- [Arxiv](https://arxiv.org/pdf/2502.10172)
- ## Parameters 
- - **N**  - Number of agents
- - **q**  - size of grupe of influencse 
- - **epsilon_up_arrow** -
- - **epsilon_down_arrow** -
 
-In the code, **epsilon_up_arrow** and **epsilon_down_arrow** can be labeled **e1** and **e2**, respectively
+# Modeling Biases in the Generalized Nonlinear q-Voter Model
+
+This repository contains the code used to generate results for the publication *"Modeling biases in binary decision-making within the generalized nonlinear q-voter model"*.
+
+[Arxiv](https://arxiv.org/pdf/2502.10172)
+
+## Requirements
+
+The code is written in **Julia** and was tested on **Julia v1.9.2**. To run the simulations and analyses, ensure you have the following packages installed:
+
+```julia
+using LinearAlgebra
+using Plots
+using DifferentialEquations
+using NLsolve
+using CSV
+using DataFrames
+```
+
+To install missing packages, use:
+
+```julia
+using Pkg
+Pkg.add(["LinearAlgebra", "Plots", "DifferentialEquations", "NLsolve", "CSV", "DataFrames"])
+```
+
+## Parameters
+
+- **N**  - Number of agents
+- **q**  - Size of the group of influence
+- **$\varepsilon_{\uparrow}$** (*epsilon_up_arrow*) - Probability of an unadopted agent adopting a state
+- **$\varepsilon_{\downarrow}$** (*epsilon_down_arrow*) - Probability of an adopted agent switching to an unadopted state
+
+In the code, **epsilon_up_arrow** and **epsilon_down_arrow** are referred to as **e1** and **e2**, respectively.
+
+## Model Description
+
+The model is implemented on a complete graph, meaning that the network structure is not explicitly stored. Instead, only the number of adopted agents (**N_up**) is tracked.
+
 ### Figure
-A figure to remind you of the meaning of the parameters
+
+A schematic diagram of the model parameters:
 
 ![Figure](model_scheme.pdf)
 
-**Caption:** 
-Schematic diagram of our model illustrating possible scenarios in which a target agent (inside the circle) may change its state. Examples are provided for $q=4$. Black (white) agents represent adopted (unadopted) agents, while gray agents indicate agents in an arbitrary state. In scenarios (a) and (b), the target agent’s state changes independently of its initial state because the $q$-panel is unanimous. Cases (c) and (d) represent situations where the $q$-panel is not unanimous, meaning that the probability of changing state depends on the target agent's initial state: (c) the target agent is adopted and switches to an unadopted state with probability $\varepsilon_\downarrow$; otherwise, it retains its original state; (d) the target agent is unadopted and adopts with probability $\varepsilon_\uparrow$; otherwise, it retains its original state.
- ## Files
+**Caption:**
+The diagram illustrates possible scenarios where a target agent (inside the circle) may change its state. Examples are provided for **q = 4**. Black (white) agents represent adopted (unadopted) agents, while gray agents indicate agents in an arbitrary state. 
+- (a), (b): The target agent's state changes independently of its initial state if the **q-panel** is unanimous.
+- (c): If the **q-panel** is not unanimous, an adopted agent switches to an unadopted state with probability **$\varepsilon_{\downarrow}$**.
+- (d): If the **q-panel** is not unanimous, an unadopted agent adopts the state with probability **$\varepsilon_{\uparrow}$**.
 
- ### Simulation
- The model was implemented on a complete graph, so in the case of simulation, it allowed us to forget the network structure and remember only the number of agents adapted (**N_up**) 
+---
 
- #### one_step_function.jl [View code](one_step_function.jl)
-Main function that describes the MoneCarlo elemetary step($\Delta t= 1/N $) in the simulation.
+## Files and Functions
 
- #### trajectory_simulation.jl [View code](trajectory_simulation.jl)
- Time trajectories from symulation for given **q**,**epsilon_up_arrow**,**epsilon_down_arrow values**. The file has been modified for calculating multiple initial conditions 
+### Simulation
 
- #### exitprobability_simulation.jl [View code](exitprobability_simulation.jl)
- Code used to calculate exit probability from simulation.
+#### `one_step_function.jl` [View code](one_step_function.jl)
+Main function describing the Monte Carlo elementary step (**$\Delta t = 1/N $**) in the simulation.
 
- ### Analytical
- 
- #### trajectory_analitical_plus_stab_point.jl [View code](trajectory_analitical_plus_stab_point.jl )
-Time trajectories from analytics for given **q**,**epsilon_up_arrow**,**epsilon_down_arrow values**.
-In these cases were added stable and unstable points that occur in the system for the given parameters.
- 
- #### exitprobability_analitical.jl [View code](exitprobability_analitical.jl)
- Code used to calculate exit probability from analytics.
- Exit probability was calculated using the representation of a small system as a markov chain, which was possible due to the homogeneity of the complete graph 
+#### `trajectory_simulation.jl` [View code](trajectory_simulation.jl)
+Generates time trajectories for given **q**, **epsilon_up_arrow**, and **epsilon_down_arrow** values. Modified for multiple initial conditions.
 
- #### phase_portrait.jl [View code](phase_portrait.jl)
- Preparation of a phase portrait for a given q.
-In the code, we look for fixed points and check their stability. The code generates temporary phase numbers as well as the number of fixed points for a grid of **epsilon_up_arrow** and **epsilon_down_arrow values** values.
+#### `exitprobability_simulation.jl` [View code](exitprobability_simulation.jl)
+Calculates exit probabilities from simulations.
 
- 
+### Analytical
+
+#### `trajectory_analytical_plus_stab_point.jl` [View code](trajectory_analytical_plus_stab_point.jl)
+Generates analytical time trajectories for given **q**, **epsilon_up_arrow**, and **epsilon_down_arrow** values, with stable and unstable points included.
+
+#### `exitprobability_analytical.jl` [View code](exitprobability_analytical.jl)
+Computes exit probability using a Markov chain representation, leveraging the homogeneity of the complete graph.
+
+#### `phase_portrait.jl` [View code](phase_portrait.jl)
+Prepares a phase portrait for a given **q**, identifying fixed points and checking their stability. Outputs phase portraits and fixed-point distributions for a grid of **epsilon_up_arrow** and **epsilon_down_arrow** values.
+
+---
+
+## How to Run the Code
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/TheMik1999/Modeling-biases-in-the-generalized-nonlinear-q-voter-model.git
+   cd generalized-nonlinear-q-voter-model
+   ```
+2. Ensure you have **Julia v1.9.2** installed.
+3. Install dependencies (if not installed already):
+   ```julia
+   using Pkg
+   Pkg.add(["LinearAlgebra", "Plots", "DifferentialEquations", "NLsolve", "CSV", "DataFrames"])
+   ```
+4. Run simulations:
+   ```julia
+   include("trajectory_simulation.jl")
+   ```
+5. Run analytical calculations:
+   ```julia
+   include("trajectory_analytical_plus_stab_point.jl")
+   ```
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+## Author
+
+- **TheMik1999** - [GitHub Profile](https://github.com/TheMik1999)
+
+
+For questions or contributions, feel free to open an issue or submit a pull request!
+```
+

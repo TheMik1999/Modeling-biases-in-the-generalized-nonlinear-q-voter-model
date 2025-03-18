@@ -1,19 +1,19 @@
 """
-    one_step(N::Int, N_up::Int, epsilon_up_arow::Float64, 
-             epsilon_down_arow::Float64, q::Int)
+    one_step(N::Int, N_up::Int, ε_⭡::Float64, 
+             ε_⭣::Float64, q::Int)
 
 Performs one elementary step Monte Carlo simulation :
 
 - `N` – total number of agents.
 - `N_up` – number of agents with the adopted state.
-- `epsilon_up_arow` – probability of changing opinion to adopted (if not unanimity).
-- `epsilon_down_arow` – probability of changing opinion to unadopted (if not unanimity).
+- `ε_⭡` – probability of changing opinion to adopted (if not unanimity).
+- `ε_⭣` – probability of changing opinion to unadopted (if not unanimity).
 - `q` – number of agents considered in the panel.
 
 Returns the value by how much the N_up will change
 """
 
-function one_step(N::Int,N_up::Int,epsilon_up_arow::Float64,epsilon_down_arow::Float64,q::Int)
+function one_step(N::Int,N_up::Int,ε_⭡::Float64,ε_⭣::Float64,q::Int)
     r=rand()
     q_con=1 # which agent of q-panel will be draw next 
     q_panel_fail=false # give as info if we collect q_panel with same opinion 
@@ -51,7 +51,7 @@ function one_step(N::Int,N_up::Int,epsilon_up_arow::Float64,epsilon_down_arow::F
         
         # we did not collect q-panel with same opinion
         r=rand()
-        if r<epsilon_down_arow
+        if r<ε_⭣
             return -1
         else
             return 0       
@@ -93,7 +93,7 @@ function one_step(N::Int,N_up::Int,epsilon_up_arow::Float64,epsilon_down_arow::F
 
         # we did not collect q-panel with same opinion
         r=rand()
-        if r<epsilon_up_arow 
+        if r<ε_⭡ 
             return 1
         else
             return 0

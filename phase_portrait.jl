@@ -47,7 +47,7 @@ end
 
 let 
 
-delta_e=0.001
+delta_e=0.01
 ε_⭡_span=0:delta_e:1.0
 ε_⭣_span=0:delta_e:1.0
 

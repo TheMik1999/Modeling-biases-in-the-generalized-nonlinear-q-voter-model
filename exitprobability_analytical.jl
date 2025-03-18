@@ -1,6 +1,5 @@
 using LinearAlgebra
 using Plots
-using DelimitedFiles
 
 function gamma_plus(k, N, q, ε_⭡)
 
