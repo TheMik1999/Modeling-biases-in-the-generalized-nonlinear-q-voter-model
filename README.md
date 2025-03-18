@@ -10,19 +10,17 @@ This repository contains the code used to generate results for the publication *
 The code is written in **Julia** and was tested on **Julia v1.9.2**. To run the simulations and analyses, ensure you have the following packages installed:
 
 ```julia
-using LinearAlgebra
 using Plots
-using DifferentialEquations
+using LinearAlgebra
 using NLsolve
-using CSV
-using DataFrames
+using DifferentialEquations
 ```
 
 To install missing packages, use:
 
 ```julia
 using Pkg
-Pkg.add(["LinearAlgebra", "Plots", "DifferentialEquations", "NLsolve"])
+Pkg.add(["Plots","LinearAlgebra",  "DifferentialEquations", "NLsolve"])
 ```
 
 **Note:** The `DataFrames`,`DelimitedFiles` and `CSV` packages are not required to run the code unless you wish to save data to CSV files. The relevant code for saving data is marked with `# save data to csv file` and is commented out by default.
