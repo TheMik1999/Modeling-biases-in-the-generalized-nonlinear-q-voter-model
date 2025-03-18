@@ -104,8 +104,8 @@ Prepares a phase portrait for a given **q**, identifying fixed points and checki
 ## Unicode Usage
 
 The code makes use of **Unicode characters** for parameters:
-- `ε_⭡` (epsilon up) represents adoption probability.
-- `ε_⭣` (epsilon down) represents de-adoption probability.
+- `ε_⭡` (epsilon up) 
+- `ε_⭣` (epsilon down) 
 
 Ensure that your **text editor or terminal supports Unicode characters** when running the code in Julia. If you encounter issues, you may need to replace these symbols with ASCII equivalents (`e1`, `e2`) in the source files.
 ## License
