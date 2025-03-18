@@ -2,8 +2,6 @@ using Plots
 include("one_step_function.jl")
 
 let 
-
-
 #--------- paraniteres of the model 
 ε_⭡=0.25  
 ε_⭣=0.19

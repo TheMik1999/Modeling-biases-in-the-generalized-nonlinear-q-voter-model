@@ -22,17 +22,19 @@ To install missing packages, use:
 
 ```julia
 using Pkg
-Pkg.add(["LinearAlgebra", "Plots", "DifferentialEquations", "NLsolve", "CSV", "DataFrames"])
+Pkg.add(["LinearAlgebra", "Plots", "DifferentialEquations", "NLsolve"])
 ```
+
+**Note:** The `DataFrames`,`DelimitedFiles` and `CSV` packages are not required to run the code unless you wish to save data to CSV files. The relevant code for saving data is marked with `# save data to csv file` and is commented out by default.
 
 ## Parameters
 
 - **N**  - Number of agents
 - **q**  - Size of the group of influence
-- **$\varepsilon_{\uparrow}$** (*epsilon_up_arrow*) - Probability of an unadopted agent adopting a state
+- **$\varepsilon_{\uparrow}$** (*epsilon_up_arrow*) - Probability of an unadopted agent switching to adopted a state (if not unanimity in q-panel)
 - **$\varepsilon_{\downarrow}$** (*epsilon_down_arrow*) - Probability of an adopted agent switching to an unadopted state
+(if not unanimity in q-panel)
 
-In the code, **epsilon_up_arrow** and **epsilon_down_arrow** are referred to as **e1** and **e2**, respectively.
 
 ## Model Description
 
@@ -83,13 +85,13 @@ Prepares a phase portrait for a given **q**, identifying fixed points and checki
 1. Clone the repository:
    ```sh
    git clone https://github.com/TheMik1999/Modeling-biases-in-the-generalized-nonlinear-q-voter-model.git
-   cd generalized-nonlinear-q-voter-model
+   cd Modeling-biases-in-the-generalized-nonlinear-q-voter-model
    ```
 2. Ensure you have **Julia v1.9.2** installed.
 3. Install dependencies (if not installed already):
    ```julia
    using Pkg
-   Pkg.add(["LinearAlgebra", "Plots", "DifferentialEquations", "NLsolve", "CSV", "DataFrames"])
+   Pkg.add(["LinearAlgebra", "Plots", "DifferentialEquations", "NLsolve"])
    ```
 4. Run simulations:
    ```julia

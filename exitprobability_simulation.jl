@@ -1,17 +1,16 @@
 using Plots
-using CSV
-
+# save data to csv file
+# using DelimitedFiles
 include("one_step_function.jl")
-let 
 
+let 
 #--------- paraniteres of the model 
 # for exit probability we used the the assumption  
-# epsilon_up_arow + epsilon_down_arow = 1  
-# epsilon_down_arow will be called p
+# ε_⭡ + ε_⭣ = 1  
+# ε_⭡ will be called p
 p_span=[0.9,0.6,0.54,0.52,0.51,0.50,0.49,0.48,0.46,0.4,0.10]
 q_span=[2,3]
 N=64
-
 
 k_span=1:N-1 # is N_up and i will use it to inital condition 
 k_span=collect(k_span)
@@ -23,8 +22,11 @@ exit_p=zeros(length(k_span)) #vector of lenght k_span to collect all exit probab
 for q in q_span
     for p in p_span
         for k in k_span
+
             exit=0 #number of simulation which get to N_up=64 
+
             for rep_i in 1:repeat
+
                 N_up=k
                 
                 while N_up!=N && N_up!=0 
@@ -36,13 +38,17 @@ for q in q_span
                 if N_up==N
                     exit=exit+1
                 end
-
             end
+
             exit_p[k]=exit/repeat
+
         end
 
-    name="exit_sim_N$(N)_p$(p)_q$(q).csv"
+    # save data to csv file
+    # name="exit_sim_N$(N)_p$(p)_q$(q).csv"
+    # writedlm(name, hcat(k_span ./N, exit_p), ',')
     plot!(k_span,exit_p,label="p = $p",linewidth=3)
+
     end
 end
 

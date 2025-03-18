@@ -1,8 +1,10 @@
 using DifferentialEquations 
 using NLsolve
 using Plots
-using CSV
-using DataFrames
+
+# save data to csv file
+# using CSV
+# using DataFrames
 
 function jacobian(c,q,ε_⭡,ε_⭣)
     part_1=c^(q - 1) *(q - c *(q + 1))
@@ -58,7 +60,7 @@ q_span=[5]
 for q in q_span
     println("q=$q")
     num_of_fixed_point=zeros(length(ε_⭡_span),length(ε_⭣_span))
-    typ_of_faze=zeros(length(ε_⭡_span),length(ε_⭣_span))
+    typ_of_phase=zeros(length(ε_⭡_span),length(ε_⭣_span))
     non_zeros_stab=zeros(length(ε_⭡_span),length(ε_⭣_span))
     ε_⭡_i=1
     ε_⭣_i=1
@@ -115,50 +117,55 @@ for q in q_span
 
 
                 if stab==1 && un_stab==1
-                    typ_of_faze[ε_⭡_i,ε_⭣_i]=1
+                    typ_of_phase[ε_⭡_i,ε_⭣_i]=1
 
                 elseif stab==0 && un_stab==2
-                    typ_of_faze[ε_⭡_i,ε_⭣_i]=2
+                    typ_of_phase[ε_⭡_i,ε_⭣_i]=2
 
                 elseif stab==1 && un_stab==2
-                    typ_of_faze[ε_⭡_i,ε_⭣_i]=3
+                    typ_of_phase[ε_⭡_i,ε_⭣_i]=3
 
                 elseif stab==2 && un_stab==1
-                    typ_of_faze[ε_⭡_i,ε_⭣_i]=4
+                    typ_of_phase[ε_⭡_i,ε_⭣_i]=4
                     
                 elseif stab==2 && un_stab==2
-                    typ_of_faze[ε_⭡_i,ε_⭣_i]=5
+                    typ_of_phase[ε_⭡_i,ε_⭣_i]=5
 
                 elseif stab==3 && un_stab==2
-                    typ_of_faze[ε_⭡_i,ε_⭣_i]=6
+                    typ_of_phase[ε_⭡_i,ε_⭣_i]=6
                 else
-                    typ_of_faze[ε_⭡_i,ε_⭣_i]=-1
+                    typ_of_phase[ε_⭡_i,ε_⭣_i]=-1
                 end
             end
             ε_⭣_i=ε_⭣_i+1
         end
         ε_⭡_i=ε_⭡_i+1
     end
-    typ_of_faze[1,1]=6
+    typ_of_phase[1,1]=6
+
+    # save data to csv file
+    # CSV.write("typ_of_phase$q.csv", DataFrame(typ_of_phase,:auto))
+    # CSV.write("non_zeros_stab$q.csv", DataFrame(non_zeros_stab,:auto))
+
+    
+    # draw heatmap of number of fixed points
+    # plot1 = plot(dpi=3200)
+    # col=cgrad(:matter, 6, categorical = true)
+    # plot1 = heatmap(ε_⭡_span,ε_⭣_span,num_of_fixed_point)
+    # plot1 = plot(plot1, aspect_ratio=:equal)
+    # xlims!(0,1)
+    # ylims!(0,1)
+    # savefig("num_of_fix$q.png")
+
+    # draw heatmap of number of type of phase
     plot1 = plot(dpi=3200)
-    # draw heatmap 
-    col=cgrad(:matter, 6, categorical = true)
-    plot1 = heatmap(ε_⭡_span,ε_⭣_span,num_of_fixed_point)
+    plot1 = heatmap(ε_⭡_span,ε_⭣_span,typ_of_phase, color = col, grid=true)   
     plot1 = plot(plot1, aspect_ratio=:equal)
     xlims!(0,1)
     ylims!(0,1)
-    # savefig("hm_num_of_fix$q.png")
-
-    plot1 = plot(dpi=3200)
-    CSV.write("typ_of_faze$q.csv", DataFrame(typ_of_faze,:auto))
-    CSV.write("non_zeros_stab$q.csv", DataFrame(non_zeros_stab,:auto))
-    plot1 = heatmap(ε_⭡_span,ε_⭣_span,typ_of_faze, color = col, grid=true)   
-    plot1 = plot(plot1, aspect_ratio=:equal)
-    xlims!(0,1)
-    ylims!(0,1)
-
+    # savefig("typ_of_phase$q.png")
     display(plot1)
 
-    # savefig("typ_of_faze$q.png")
+    
 end
 end

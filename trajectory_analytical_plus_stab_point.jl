@@ -1,8 +1,10 @@
 using DifferentialEquations
 using Plots
 using NLsolve
-using DataFrames
-using CSV
+
+# save data to csv file
+# using DataFrames
+# using CSV
 
 let 
     function my_ode(dc, c, p_q, t)
@@ -107,8 +109,8 @@ let
             c_iter+=1
 
         end
-
-        df = DataFrame(traj_span, :auto)
+        # save data to csv file
+        #df = DataFrame(traj_span, :auto)
         # CSV.write("traj_q_$q"*"_ep1_$ε_⭡"*"_em1_$ε_⭣.csv", df)
 
 
@@ -136,7 +138,8 @@ let
             iter+=1
         end
 
-        df = DataFrame(stab_un_stab, :auto)
+        # save data to csv file
+        # df = DataFrame(stab_un_stab, :auto)
         # CSV.write("stab_q_$q"*"_ep1_$ε_⭡"*"_em1_$ε_⭣.csv", df)
         
 
