@@ -31,9 +31,9 @@ Pkg.add(["LinearAlgebra", "Plots", "DifferentialEquations", "NLsolve"])
 
 - **N**  - Number of agents
 - **q**  - Size of the group of influence
-- **$\varepsilon_{\uparrow}$** (*epsilon_up_arrow*) - Probability of an unadopted agent switching to adopted a state (if not unanimity in q-panel)
-- **$\varepsilon_{\downarrow}$** (*epsilon_down_arrow*) - Probability of an adopted agent switching to an unadopted state
-(if not unanimity in q-panel)
+- **$\varepsilon_{\uparrow}$**  - Probability of an unadopted agent switching to adopted a state (if not unanimity in $q$-panel)
+- **$\varepsilon_{\downarrow}$**  - Probability of an adopted agent switching to an unadopted state
+(if not unanimity in $q$-panel)
 
 
 ## Model Description
@@ -42,7 +42,7 @@ The model is implemented on a complete graph, meaning that the network structure
 
 ### Figure
 
-A schematic diagram of the model parameters:
+A schematic diagram of the model parameters (**q**,**$\varepsilon_{\uparrow}$**,**$\varepsilon_{\downarrow}$**):
 
 ![Figure](model_scheme.pdf)
 
@@ -62,7 +62,7 @@ The diagram illustrates possible scenarios where a target agent (inside the circ
 Main function describing the Monte Carlo elementary step (**$\Delta t = 1/N $**) in the simulation.
 
 #### `trajectory_simulation.jl` [View code](trajectory_simulation.jl)
-Generates time trajectories for given **q**, **epsilon_up_arrow**, and **epsilon_down_arrow** values. Modified for multiple initial conditions.
+Generates time trajectories for given **q**, **$\varepsilon_{\uparrow}$** and **$\varepsilon_{\downarrow}$**  values. Modified for multiple initial conditions.
 
 #### `exitprobability_simulation.jl` [View code](exitprobability_simulation.jl)
 Calculates exit probabilities from simulations.
@@ -70,13 +70,13 @@ Calculates exit probabilities from simulations.
 ### Analytical
 
 #### `trajectory_analytical_plus_stab_point.jl` [View code](trajectory_analytical_plus_stab_point.jl)
-Generates analytical time trajectories for given **q**, **epsilon_up_arrow**, and **epsilon_down_arrow** values, with stable and unstable points included.
+Generates analytical time trajectories for given **q**, **$\varepsilon_{\uparrow}$** and **$\varepsilon_{\downarrow}$** values, with stable and unstable points included.
 
 #### `exitprobability_analytical.jl` [View code](exitprobability_analytical.jl)
 Computes exit probability using a Markov chain representation, leveraging the homogeneity of the complete graph.
 
 #### `phase_portrait.jl` [View code](phase_portrait.jl)
-Prepares a phase portrait for a given **q**, identifying fixed points and checking their stability. Outputs phase portraits and fixed-point distributions for a grid of **epsilon_up_arrow** and **epsilon_down_arrow** values.
+Prepares a phase portrait for a given **q**, identifying fixed points and checking their stability. Outputs phase portraits and fixed-point distributions for a grid of **$\varepsilon_{\uparrow}$** and **$\varepsilon_{\downarrow}$** values.
 
 ---
 
@@ -103,7 +103,13 @@ Prepares a phase portrait for a given **q**, identifying fixed points and checki
    ```
 
 ---
+## Unicode Usage
 
+The code makes use of **Unicode characters** for parameters:
+- `ε_⭡` (epsilon up) represents adoption probability.
+- `ε_⭣` (epsilon down) represents de-adoption probability.
+
+Ensure that your **text editor or terminal supports Unicode characters** when running the code in Julia. If you encounter issues, you may need to replace these symbols with ASCII equivalents (`e1`, `e2`) in the source files.
 ## License
 
 This project is licensed under the MIT License.
