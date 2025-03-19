@@ -7,7 +7,7 @@ This repository contains the code used to generate results for the publication *
 
 ## Requirements
 
-The code is written in **Julia** and was tested on **Julia v1.9.2**. To run the simulations and analyses, ensure you have the following packages installed:
+The code is written in **Julia** and was tested on **Julia v1.9.2**. To run simulations and analytical calculations, ensure you have the following packages installed:
 
 ```julia
 using Plots
