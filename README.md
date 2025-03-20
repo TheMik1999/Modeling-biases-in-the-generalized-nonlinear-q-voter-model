@@ -42,7 +42,7 @@ The model is implemented on a complete graph, meaning that the network structure
 
 A schematic diagram of the model parameters (**q**,**$\varepsilon_{\uparrow}$**,**$\varepsilon_{\downarrow}$**):
 
-![Figure](model_scheme.pdf)
+![Figure](model_scheme.png)
 
 **Caption:**
 The diagram illustrates possible scenarios where a target agent (inside the circle) may change its state. Examples are provided for **q = 4**. Black (white) agents represent adopted (unadopted) agents, while gray agents indicate agents in an arbitrary state. 
