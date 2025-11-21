@@ -3,7 +3,7 @@
 
 This repository contains the code used to generate results for the publication *"Modeling biases in binary decision-making within the generalized nonlinear q-voter model"*.
 
-[Arxiv](https://arxiv.org/pdf/2502.10172)
+[Full article](https://doi.org/10.1063/5.0266510)
 
 ## Requirements
 
@@ -111,6 +111,11 @@ Ensure that your **text editor or terminal supports Unicode characters** when ru
 ## License
 
 This project is licensed under the MIT License.
+
+
+## Acknowledgments
+
+This research was partially funded by the National Science Centre, Poland, Grant 2019/35/B/HS6/02530.
 
 ## Author
 
